@@ -1,0 +1,17 @@
+﻿ 
+@model List<V3.Models.Movie>
+
+
+<h2>Here are our list of movies</h2>
+
+<ul>
+
+@foreach (var movie in Model)
+    {
+        <li>
+            <a href="/Movie/Details/@movie.ID"> @movie.Name</a>
+        </li>
+    }
+
+</ul>
+

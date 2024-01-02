@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+@model IEnumerable<IdentityUser>
+
+<h1>List of users</h1>
+
+@if (Model.Any())
+{
+    <a class="btn btn-primary" style="width:auto"
+       asp-controller="Administration" asp-action="CreateUsers">Create User</a>
+    foreach (var user in Model)
+    {
+
+        <div class="card mb-3">
+           
+                <h5 class="card-title">User Name: @user.UserName</h5>
+            </div>
+            <div class="card-footer">
+                <a href="" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-primary" method="post">Delete</a>
+            </div>
+   
+    }
+}
+else
+{
+    <div class="card" style="width:fit-content">
+        <div class="card-header">
+            No user created yet
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Use the button below to create a new User</h5>
+            <a class="btn btn-primary" style="width:auto"
+               asp-controller="Administration" asp-action="CreateUsers">Create User</a>
+        </div>
+    </div>
+}
+
+
+
+

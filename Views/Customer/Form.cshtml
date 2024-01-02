@@ -1,0 +1,49 @@
+﻿@model V3.ViewModels.NewCustomerViewModel
+<h2>New customer</h2>
+
+@using (Html.BeginForm("Create", "Customer"))
+    {
+    @Html.ValidationSummary()
+    <div class="form-group">
+        <div class="col-md-4 col-sm-4">
+            <label>Name</label>
+            @Html.TextBoxFor(m => m.Customer.name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.name)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4 col-sm-4">
+            <label>Membership Type</label>
+            @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "name"), "Select Membership Type", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+            </div>
+        </div>
+
+
+    <div class="form-group">
+        <div class="col-md-4 col-sm-4">
+            <label>Date of Birth</label>
+            @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.Birthdate)
+            </div>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(m => m.Customer.IsSubcribedTo, new { @class = "form-switch" }) Subscribed to newsletter?
+            </label>
+        </div>
+
+        @Html.HiddenFor(m => m.Customer.Id)
+        @Html.AntiForgeryToken()
+
+        <button type="submit" class="btn btn-primary">Save</button>
+
+        }
+
+    
+        @section Scripts
+{
+            <partial name="_ValidationScriptsPartial" />
+        }
